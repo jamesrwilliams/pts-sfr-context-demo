@@ -1,5 +1,3 @@
-import {Wrapper} from "./utils/Wrapper";
-import Placeholder from "./utils/Placeholder";
 import Token from "./utils/Token";
 import {useContext} from "react";
 import storefrontContext from "../context/StorefrontContext";
