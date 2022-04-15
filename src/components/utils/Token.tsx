@@ -1,7 +1,7 @@
 import {useContext} from "react";
 import StorefrontContext from "../../context/StorefrontContext";
 
-const Token = ({token}: { token: string; }) => {
+const Token = ({token, noSpan = false}: { token: string; noSpan?: boolean }) => {
 
   // @ts-ignore
   const { configuration } = useContext(StorefrontContext);
@@ -10,9 +10,9 @@ const Token = ({token}: { token: string; }) => {
   const { language: { tokens } } = configuration;
 
   if(tokens[token]) {
-    return <span>{ tokens[token] }</span>
+    return  noSpan ? tokens[token] : <span>{ tokens[token] }</span>
   } else {
-    return <><mark title={'MISSING TOKEN'}><code>{ token }</code></mark></>
+    return <>Missing token: { token }</>
   }
 }
 

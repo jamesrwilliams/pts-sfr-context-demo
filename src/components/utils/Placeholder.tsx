@@ -9,7 +9,12 @@ const PlaceholderElement = styled.div`
   font-weight: bold;
 `;
 
-
+/**
+ * This is a temporary component to easily make nice looking placeholder blocks
+ * @param title
+ * @param props
+ * @constructor
+ */
 const Placeholder = ({ title, ...props } : any) => {
   return <PlaceholderElement {...props}><span>{ title }</span></PlaceholderElement>
 }

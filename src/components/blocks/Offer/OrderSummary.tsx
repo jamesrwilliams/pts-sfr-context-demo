@@ -1,16 +1,19 @@
-import Token from "./utils/Token";
-import {useContext} from "react";
-import storefrontContext from "../context/StorefrontContext";
+import React, {useContext} from "react";
+import storefrontContext from "../../../context/StorefrontContext";
+import Token from "../../utils/Token";
 
 const OrderSummary = () => {
 
+  // TODO: Work out why TS is mad at this. I think there is something wrong with how I am
+  //  initializing the `storefrontContext`.
   // @ts-ignore
   const { order: { selectedIncrement } } = useContext(storefrontContext);
 
   return (
-    <section style={{ width: '50%', border: '5px solid #EEF2F5' }}>
+    <section style={{ border: '5px solid #EEF2F5' }}>
       <h3><Token token={'payment.order-summary.heading'} /></h3>
       <table>
+        <tbody>
         <tr>
           <td><Token token={'pts-order-summary.number-of-points.label'} /></td>
           <td>{ new Intl.NumberFormat().format(selectedIncrement) }</td>
@@ -19,6 +22,7 @@ const OrderSummary = () => {
           <td><Token token={'receipt.order-details.order-date.label'} /></td>
           <td>{ new Date().toLocaleDateString() }</td>
         </tr>
+        </tbody>
       </table>
     </section>
   )

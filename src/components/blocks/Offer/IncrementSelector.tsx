@@ -1,7 +1,7 @@
-import {Wrapper} from "./utils/Wrapper";
-import Token from "./utils/Token";
+import {Wrapper} from "../../utils/Wrapper";
+import Token from "../../utils/Token";
 import {useContext} from "react";
-import StorefrontContext from "../context/StorefrontContext";
+import StorefrontContext from "../../../context/StorefrontContext";
 
 const IncrementSelector = () => {
 
@@ -31,7 +31,7 @@ const IncrementSelector = () => {
         <select value={selectedIncrement} onChange={(elem) => update(elem.target.value)}>
           { tiers.map((tier) => {
             return <option key={tier.currency} value={tier.currency}>
-              Buy { tier.currency } <Token token={'lp.currency.name'} /> for ${ tier.price }
+              Buy { tier.currency } <Token noSpan token={'lp.currency.name'} /> for ${ tier.price }
             </option>
           }) }
         </select>

@@ -1,25 +1,17 @@
-import Header from "./Header";
-import PaymentForm from "./PaymentForm";
-import Footer from "./Footer";
-import React from "react";
-import MarketingBlock from "./MarketingBlock";
-import IncrementSelector from "./IncrementSelector";
-import OrderSummary from "./OrderSummary";
-import {Wrapper} from "./utils/Wrapper";
+import React, {useContext} from "react";
+import storefrontContext from "../context/StorefrontContext";
+import LoadingSpinner from "./utils/LoadingSpinner";
+import PageBuilder from "./PageBuilder";
 
 const Storefront = () => {
-  return (
-    <main className={'storefront'}>
-      <Header />
-      <MarketingBlock />
-      <IncrementSelector />
-      <Wrapper style={{ display: 'flex', flexBasis: '50%' }}>
-        <PaymentForm />
-        <OrderSummary />
-      </Wrapper>
-      <Footer />
-    </main>
-  )
+
+  const context = useContext(storefrontContext);
+
+  if(context?.configuration?.loading.isLoading) {
+    return <LoadingSpinner />
+  }
+
+  return <PageBuilder pageData={context.pageContent} />
 }
 
 export default Storefront;
