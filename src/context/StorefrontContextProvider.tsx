@@ -1,5 +1,6 @@
 import React, {FC, useEffect, useState} from 'react';
 import StorefrontContext from './StorefrontContext';
+import fallbackStorefrontContent from '../data/example.json';
 
 export const StorefrontContextProvider: FC = ({children}) => {
 
@@ -12,8 +13,6 @@ export const StorefrontContextProvider: FC = ({children}) => {
   const changeLanguage = (lang: string) => setCurrentLanguage(lang);
 
   useEffect(() => {
-    // Hardcoding this for demo.
-    const translationsEndpoint = `https://dz57b37czzuk6.cloudfront.net/storefronts/globalrewards/accelerator/master/tokens/${currentLanguage}.json`;
     let pageContentEndpoint = `https://bgwp-010.sandbox.us01.dx.commercecloud.salesforce.com/on/demandware.store/Sites-whitelabel-Site/default/buy-Serialize`;
 
     if(window) {
@@ -23,13 +22,6 @@ export const StorefrontContextProvider: FC = ({children}) => {
         pageContentEndpoint = override;
       }
     }
-
-    fetch(translationsEndpoint)
-      .then((res) => res.json())
-      .then((response) => {
-        setTokens(response);
-      }).finally(() => {
-      })
 
     // This is hideous as I am faking a slow response to show the loading screen...
     fetch(pageContentEndpoint)
@@ -42,10 +34,22 @@ export const StorefrontContextProvider: FC = ({children}) => {
           setLoading(false);
         }, 2000)
       }).catch((error) => {
-        console.log({error});
-        alert(`Failed to load data from content endpoint: ${pageContentEndpoint}`);
-        setLoading(false);
+      console.log('[PTS] Using fallback content as call to content endpoint failed');
+      setPageContent(fallbackStorefrontContent)
+      setLoading(false);
     });
+
+  }, []);
+
+  useEffect(() => {
+    // Hardcoding this for demo.
+    const translationsEndpoint = `https://dz57b37czzuk6.cloudfront.net/storefronts/globalrewards/accelerator/master/tokens/${currentLanguage}.json`;
+
+    fetch(translationsEndpoint)
+      .then((res) => res.json())
+      .then((response) => {
+        setTokens(response);
+      });
 
   }, [currentLanguage])
 
@@ -56,7 +60,7 @@ export const StorefrontContextProvider: FC = ({children}) => {
       current: currentLanguage,
       change: changeLanguage,
       tokens,
-      available: ['ar-QA', 'en-GB', 'en-US']
+      available: ['ar-QA', 'es-ES', 'en-US']
     },
     loading: {
       isLoading,

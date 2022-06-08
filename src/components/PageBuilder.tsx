@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import {Header, Marketing, Offer, Content, Footer} from "./blocks";
+import {Header, Marketing, Offer, Content, Footer, Main} from "./blocks";
 
 const UnmappedComponent = styled.section`
   background: yellow;
@@ -17,6 +17,7 @@ const PageBuilder = ({pageData}: any) => {
     offer: Offer,
     content: Content,
     footer: Footer,
+    main: Main
   }
 
   if (!slices.regions) {

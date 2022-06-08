@@ -1,0 +1,31 @@
+
+{
+  "id" : "buy",
+  "type_id" : "configPage",
+  "data" : { },
+  "regions" : [ {
+    "id" : "header",
+    "components" : [ {
+      "id" : "f1a1253f0da5ea9ecad5887d3d",
+      "type_id" : "header",
+      "data" : {
+        "imageUrlDesktop" : "https://i.imgur.com/U7CuFMl.png",
+        "linkUrl" : "https://i.imgur.com/U7CuFMl.png",
+        "alt" : "TEST"
+      }
+    } ]
+  }, {
+    "id" : "main"
+  }, {
+    "id" : "footer",
+    "components" : [ {
+      "id" : "9e619f9834b090fd1d64a9e427",
+      "type_id" : "footer",
+      "data" : {
+        "imageUrlDesktop" : "https://seeklogo.com/images/P/points-logo-67BF8FA639-seeklogo.com.png",
+        "linkUrl" : "https://www.points.com/",
+        "alt" : "Points.com"
+      }
+    } ]
+  } ]
+}
